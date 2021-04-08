@@ -3,6 +3,8 @@ import random
 
 def generar_punto():
     x = random.random()
+    y = random.random()
+    return x,y
 
 N=10000
 M=0
