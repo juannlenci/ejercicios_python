@@ -56,7 +56,7 @@ naipes = [(valor,palo) for valor in valores for palo in palos]
 #print(naipes)
 #cartas = (random.sample(naipes,k=3))
 
-N = 1000000
+N = 100000
 E31 = 0
 E32 = 0
 E33 = 0
