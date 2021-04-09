@@ -8,7 +8,7 @@ def parse_csv(nombre_archivo, select = None, types = None, has_headers=True):
     
     * nombre archivo: Se le pasa el archivo a parsear (ej: nombre_archivo = "archivo.csv").
     * select: Opcional (default=None), se le pasa una lista de nombres de las columnas a considerar. (ej: select = ['columna 1', 'columna 3']).
-    * types: Opcional (default=None), se le pasa una lista con los tipos de datos que se quieren de cada columna (ej: select = [str, int]).
+    * types: Opcional (default=None), se le pasa una lista con los tipos de datos que se quieren de cada columna (ej: types = [str, int]).
     * has_headers: Opcional (default=True), se le pasa has_headers=False si el archivo no contiene encabezado, entocnes la funcion devuelve lista de tuplas.
     
     '''
