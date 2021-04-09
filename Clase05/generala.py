@@ -60,7 +60,7 @@ def es_generala(tirada):
             return True  
     return False
     
-N = 100000
+N = 1000000
 G = 0
 servida = 0
 

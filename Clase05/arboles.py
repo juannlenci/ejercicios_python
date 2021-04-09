@@ -46,7 +46,7 @@ d = np.array(diccionario["Jacarandá"])[:,1] #Selecciono solo diametros
 plt.figure(1)
 plt.hist(h,bins=25)
 plt.xlabel("Altura [m]")
-plt.xlabel("Cantidad")
+plt.ylabel("Cantidad")
 plt.title("Histograma Altos Jacarandá")
 
 #%% ScatterPlot 
