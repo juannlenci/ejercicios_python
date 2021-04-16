@@ -17,7 +17,8 @@
 #             print(f'[DEBUG] {izq:3d} |{der:>3d} |{medio:3d}')
 #         if lista[medio] == x:
 #             pos = medio     # elemento encontrado!
-#         if lista[medio] > x:
+#             break
+#         elif lista[medio] > x:
 #             der = medio - 1 # descarto mitad derecha
 #         else:               # if lista[medio] < x:
 #             izq = medio + 1 # descarto mitad izquierda
@@ -50,7 +51,8 @@ def donde_insertar(lista, x, verbose = False):
                 print(f'[DEBUG] {izq:3d} |{der:>3d} |{medio:3d}')
             if lista[medio] == x:
                 pos = medio     # elemento encontrado!
-            if lista[medio] > x:
+                break
+            elif lista[medio] > x:
                 der = medio - 1 # descarto mitad derecha
             else:               # if lista[medio] < x:
                 izq = medio + 1 # descarto mitad izquierda
@@ -65,8 +67,8 @@ def donde_insertar(lista, x, verbose = False):
 
 #%% 
 
-def insertar(lista, x):
-    pos = donde_insertar(lista, x)
+def insertar(lista, x, verbose = False):
+    pos = donde_insertar(lista, x, verbose)
     if x in lista:
         pass
     else:
