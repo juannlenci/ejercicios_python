@@ -89,10 +89,15 @@ for i in range(n_repeticiones):
     contador = cuantos_paquetes(figus_total, figus_paquete)
     lista_paquetes.append(contador)
     
-print(f'El promedio de paqietes comprados para llenar un album es: {np.mean(lista_paquetes):0.2f}')
+print(f'El promedio de paquetes comprados para llenar un album es: {np.mean(lista_paquetes):0.2f}')
+print(f'{np.mean(lista_paquetes):0.2f}')
+plt.figure(1)
+plt.hist(lista_paquetes,bins=25)
 
+plt.figure(2)
 plt.plot(calcular_historia_figus_pegadas(figus_total, figus_paquete))
 plt.xlabel("Cantidad de paquetes comprados.")
 plt.ylabel("Cantidad de figuritas pegadas.")
 plt.title("La curva de llenado se desacelera al final")
 plt.show()
+

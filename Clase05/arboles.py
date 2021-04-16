@@ -50,12 +50,12 @@ plt.ylabel("Cantidad")
 plt.title("Histograma Altos Jacarandá")
 
 #%% ScatterPlot 
-
-for i, especie in enumerate(especies, start=2):
+colors = ["green","blue","red"]
+for i, especie in enumerate(especies, start=0):
     altura = np.array(diccionario[especie])[:,0]
     diametro = np.array(diccionario[especie])[:,1]
-    plt.figure(i)
-    plt.scatter(diametro,altura, alpha=.5, s=25, label=especie)
+    plt.figure(i+2)
+    plt.scatter(diametro,altura,c=colors[i], alpha=.5, s=25, label=especie)
     plt.legend(loc='best', fontsize='small')
     plt.xlabel("Anchos [cm]")
     plt.ylabel("Altos [m]")
@@ -66,11 +66,14 @@ plt.figure(5)
 plt.xlim(0 , 180)
 plt.ylim(0 , 45)
 
-for i, especie in enumerate(especies, start=2):
+for i, especie in enumerate(especies, start=0):
     altura = np.array(diccionario[especie])[:,0]
     diametro = np.array(diccionario[especie])[:,1]
-    plt.scatter(diametro,altura, alpha=.5, s=20, label=especie)
+    plt.scatter(diametro,altura,c=colors[i], alpha=.5, s=20, label=especie)
     plt.legend(loc='best', fontsize='x-small')
     plt.xlabel("Anchos [cm]")
     plt.ylabel("Altos [m]")
     plt.title("Relacion Altos-Diametros")
+    
+plt.show()
+ 
