@@ -76,64 +76,39 @@
 #                 registros.append(registro)
 
 #     return registros
+
 #%%
-import csv
 
-def parse_csv(file, select = None, types = None, has_headers=True, silence_errors = False):
-    '''
-    Parsea un  archivo, objeto o iterable  en una lista de registros.
+def parse_csv(filas, select = None, types = None, has_headers=True, silence_errors = False):
+
+    registros = []      
+    indices = []       
+
     
-    parse_csv(file, select, types, has_headers, silence_errors)
-    
-    * file:
-        Se le pasa el archivo, objeto o iterable a parsear (ej: file = "archivo.csv").
-    * select:
-        Opcional (default=None)
-        se le pasa una lista de nombres de las columnas a considerar.
-        (ej: select = ['columna 1', 'columna 3']).
-    * types:
-        Opcional (default=None)
-        se le pasa una lista con los tipos de datos que se quieren de cada columna
-        (ej: types = [str, int]).
-    * has_headers:
-        Opcional (default=True)
-        se le pasa has_headers=False si el archivo no contiene encabezado, entocnes la funcion devuelve lista de tuplas.
-    * silence_errors:
-        Opcional (default=False)
-        se le pasa silence_errors=True para silencial los errores.
-    '''
-    #with open(nombre_archivo, encoding="utf8") as f:
-    #    filas = csv.reader(f)               
+    for n_fila, fila in enumerate(filas, start=1):  
+#%%    
+        fila = fila.strip().split(",") #Separo por comas
+        if has_headers and n_fila == 1:
+            encabezados = fila
 
-    # Si tiene encabezados, los selecciono
-    if has_headers:
-        encabezados = file[0].split(",")
-
-    if select:   
-        try:
-            if has_headers:
-                indices = [encabezados.index(nombre_columna) for nombre_columna in select]
-                encabezados = select
+            if select:
+                try:
+                    if has_headers:
+                        indices = [encabezados.index(nombre_columna) for nombre_columna in select]
+                        encabezados = select
+                    else:
+                        raise RuntimeError("Para seleccionar, necesito encabezados.")
+                        
+                except Exception as e:
+                    if silence_errors == False:
+                        print('Hubo un error. Porque...', e)
+                    select = None
+                    indices = []
             else:
-                #Levanto una excepcion
-                raise RuntimeError("Para seleccionar, necesito encabezados.")
-
-        except Exception as e:
-            if silence_errors == False:
-                print('Hubo un error. Porque...', e)
-            select = None
-            indices = []
-    else:
-        indices = []   
-
-    registros = []
-    n_fila = 0
-    for fila in file:
-        if has_headers and n_fila==0: #Si tiene header, no lo leo
-            n_fila += 1 
+                indices = []       
+#%%
         else:
             try:
-                fila = fila.split(",")
                 ex = False
                 if not fila:
                     continue
@@ -145,10 +120,10 @@ def parse_csv(file, select = None, types = None, has_headers=True, silence_error
                     fila = [func(val) for func, val in zip(types, fila)]
                     
                 if has_headers:
-                        registro = dict(zip(encabezados, fila))
+                    registro = dict(zip(encabezados, fila))
                 else:
                     registro = tuple(fila)
-    
+                    
             except ValueError as e:
                 ex = True
                 if silence_errors == False:
@@ -156,8 +131,5 @@ def parse_csv(file, select = None, types = None, has_headers=True, silence_error
     
             if ex==False:
                 registros.append(registro)
-            n_fila += 1 
 
-
-        
     return registros
