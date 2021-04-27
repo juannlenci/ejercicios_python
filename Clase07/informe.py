@@ -1,5 +1,6 @@
-#Informe.py
-#%%
+#!/usr/bin/env python3
+
+#%%Informe.py
 from fileparse import parse_csv
 
 def leer_camion(nombre_archivo):
@@ -7,7 +8,8 @@ def leer_camion(nombre_archivo):
     Se le pasa el nombre del archivo a leer y devuelve
     una lista con nombre, cajones y precio
     '''
-    camion = parse_csv(nombre_archivo, select=["nombre","cajones","precio"], types=[str, int, float])
+    with open(nombre_archivo, encoding="utf8") as file:
+            camion = parse_csv(file, select=["nombre","cajones","precio"], types=[str, int, float])
 
     return camion
 
@@ -16,8 +18,9 @@ def leer_precios(nombre_archivo):
     Se le pasa el nombre del archivo a leer y devuelve
     un diccionario con nombre y precio
     '''
-    precio = dict(parse_csv(nombre_archivo, types=[str,float], has_headers=False))
-    
+    with open(nombre_archivo, encoding="utf8") as file:
+            precio = dict(parse_csv(file, types=[str, float], has_headers=False))
+
     return precio
 
 def hacer_informe(lista_camion,dict_precios):

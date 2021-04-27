@@ -1,6 +1,6 @@
-# #Costo_camion.py
+#!/usr/bin/env python3
 
-#%%
+#%%costo_camion.py
 from informe import leer_camion
 
 def costo_camion(nombre_archivo):

@@ -93,7 +93,6 @@ def leer_precios(nombre_archivo):
     un diccionario con nombre y precio
     '''
     precio = dict(parse_csv(nombre_archivo, types=[str,float], has_headers=False))
-    
     return precio
 
 def hacer_informe(lista_camion,dict_precios):
